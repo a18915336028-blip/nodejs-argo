@@ -34,11 +34,12 @@ if (!fs.existsSync(FILE_PATH)) {
 // 生成随机6位字符文件名
 function generateRandomName() {
   const characters = 'abcdefghijklmnopqrstuvwxyz';
-  let  让 result  结果 = '';
+  let  让  让 result      结果结果结果 = '';
 让结果 = '';
   for  对于 (let  让 i = 0; i < 6; i++) {
 对于 (让 i = 0; i < 6; i++) {
     result += characters.charAt(Math.floor(Math.random() * characters.length));
+结果 += characters.charAt(Math.floor(Math.random() * characters.length));
 结果 += characters.charAt(Math.floor(Math.random() * characters.length));
 结果 += characters.charAt(Math.floor(Math.random() * characters.length));
   }
@@ -63,19 +64,65 @@ let configPath = path.join(FILE_PATH, 'config.json');
 // 如果订阅器上存在历史运行节点则先删除
 function deleteNodes() {
   try {
+尝试 {
+尝试 {
     if (!UPLOAD_URL) return;
+如果 (!UPLOAD_URL) 返回;
+如果 (!UPLOAD_URL) 返回;
     if (!fs.existsSync(subPath)) return;
+如果 (!fs.existsSync(subPath)) 返回;
+如果 (!fs.existsSync(subPath)) 返回;
 
     let fileContent;
     try {
+尝试 {
+尝试 {
+尝试 {
+尝试 {
+尝试 {
+尝试 {
+尝试 {
+尝试 {
       fileContent = fs.readFileSync(subPath, 'utf-8');
     } catch {
+} 捕获 {
+} 捕获 {
+} 捕获 {
+} 捕获 {
+} 捕获 {
+} 捕获 {
       return null;
+返回 null;
+返回 null;
+返回 null;
+返回 null;
     }
 
     const decoded = Buffer.from(fileContent, 'base64').toString('utf-8');
     const nodes = decoded.split('\n').filter(line => 
+const nodes = decoded.split('\
+').filter(line =>
+const nodes = decoded.split('\
+const nodes = decoded.split('\\
+const nodes = decoded.split('\\
+').filter(line =>
+const nodes = decoded.split('\
+').filter(line =>
+const nodes = decoded.split('\
+').filter(line =>
+const nodes = decoded.split('\
+const nodes = decoded.split('\\
+').filter(line =>
+const nodes = decoded.split('\
+').filter(line =>
+const nodes = decoded.split('\
+').filter(line =>
       /(vless|vmess|trojan|hysteria2|tuic):\/\//.test(line)
+/(vless|vmess|trojan|hysteria2|tuic):\\/\\//.test(line)
+/(vless|vmess|trojan|hysteria2|tuic):\\/\\//.test(line)
+/(vless|vmess|trojan|hysteria2|tuic):\\\\/\\\\//.test(line)
+/(vless|vmess|trojan|hysteria2|tuic):\\/\\//.test(line)
+/(vless|vmess|trojan|hysteria2|tuic):\\\\/\\\\//.test(line)
     );
 
     if (nodes.length === 0) return;
@@ -84,40 +131,71 @@ function deleteNodes() {
       JSON.stringify({ nodes }),
       { headers: { 'Content-Type': 'application/json' } }
     ).catch((error) => { 
+).catch((错误) => {
+).catch((错误) => {
       return null; 
+返回 null;
+返回 null;
+返回 null;
     });
     return null;
+返回 null;
+返回 null;
   } catch (err) {
+} 捕获 (err) {
+} 捕获 (err) {
     return null;
+返回 null;
   }
 }
 
 // 清理历史文件
 function cleanupOldFiles() {
   try {
+尝试 {
+尝试 {
+尝试 {
+尝试 {
+尝试 {
+尝试 {
+尝试 {
     const files = fs.readdirSync(FILE_PATH);
     files.forEach(file => {
       const filePath = path.join(FILE_PATH, file);
       try {
+尝试 {
+尝试 {
+尝试 {
+尝试 {
+尝试 {
         const stat = fs.statSync(filePath);
         if (stat.isFile()) {
           fs.unlinkSync(filePath);
         }
       } catch (err) {
 } 捕获 (err) {
+} 捕获 (err) {
+} 捕获 (err) {
+} 捕获 (err) {
+} 捕获 (err) {
         // 忽略所有错误，不记录日志
       }
     });
   } catch (err) {
+} 捕获 (err) {
+} 捕获 (err) {
     // 忽略所有错误，不记录日志
   }
 }
 
 // 生成xr-ay配置文件
 async function generateConfig() {
+"async function generateConfig() {
+"async function generateConfig() {
   const config = {
     log: { access: '/dev/null', error: '/dev/null', loglevel: 'none' },
     inbounds: [
+inbounds: ["
 inbounds: ["
       { port: ARGO_PORT, protocol: 'vless', settings: { clients: [{ id: UUID, flow: 'xtls-rprx-vision' }], decryption: 'none', fallbacks: [{ dest: 3001 }, { path: "/vless-argo", dest: 3002 }, { path: "/vmess-argo", dest: 3003 }, { path: "/trojan-argo", dest: 3004 }] }, streamSettings: { network: 'tcp' } },
       { port: 3001, listen: "127.0.0.1", protocol: "vless", settings: { clients: [{ id: UUID }], decryption: "none" }, streamSettings: { network: "tcp", security: "none" } },
@@ -156,8 +234,11 @@ function downloadFile(fileName, fileUrl, callback) {
     method: 'get',
     url: fileUrl,
     responseType: 'stream',
+"responseType: 'stream',
+"responseType: 'stream',
   })
     .then(response => {
+.then(response => {"
       response.data.pipe(writer);
 
       writer.on('finish', () => {
@@ -175,6 +256,7 @@ function downloadFile(fileName, fileUrl, callback) {
     })
     .catch(err => {
       const errorMessage = `Download ${path.basename(filePath)} failed: ${err.message}`;
+const errorMessage = `下载 ${path.basename(filePath)} 失败: ${err.message}`;
       console.error(errorMessage); // 下载失败时输出错误消息
       callback(errorMessage);
     });
@@ -184,12 +266,16 @@ function downloadFile(fileName, fileUrl, callback) {
 async function downloadFilesAndRun() {  
 async function downloadFilesAndRun() {"
 async function downloadFilesAndRun() {"
+async function downloadFilesAndRun() {"
+"async function downloadFilesAndRun() {\"
   
   const architecture = getSystemArchitecture();
+const architecture = getSystemArchitecture();"
   const filesToDownload = getFilesForArchitecture(architecture);
 
   if (filesToDownload.length === 0) {
     console.log(`Can't find a file for the current architecture`);
+console.log(`无法找到当前架构的文件`);
     return;
   }
 
@@ -206,8 +292,10 @@ async function downloadFilesAndRun() {"
   });
 
   try {
+尝试 {
     await Promise.all(downloadPromises);
   } catch (err) {
+} 捕获 (err) {
     console.error('Error downloading files:', err);
     return;
   }
@@ -310,11 +398,14 @@ uuid: ${UUID}`;
     }
 
     try {
+尝试 {
       await exec(`nohup ${botPath} ${args} >/dev/null 2>&1 &`);
       console.log(`${botName} is running`);
+console.log(`${botName} 正在运行`);
       await new Promise((resolve) => setTimeout(resolve, 2000));
     } catch (error) {
       console.error(`Error executing command: ${error}`);
+console.error(`执行命令时出错: ${error}`);
     }
   }
   await new Promise((resolve) => setTimeout(resolve, 5000));
@@ -502,6 +593,7 @@ async function uploadNodes() {
       subscription: [subscriptionUrl]
     };
     try {
+尝试 {
         const response = await axios.post(`${UPLOAD_URL}/api/add-subscriptions`, jsonData, {
             headers: {
                 'Content-Type': 'application/json'
@@ -510,10 +602,12 @@ async function uploadNodes() {
         
         if (response && response.status === 200) {
             console.log('Subscription uploaded successfully');
+console.log('订阅成功上传');
             return response;
         } else {
           return null;
-          //  console.log('Unknown response status');
+返回 null;
+          //  console.log('Unknown response status');  //  console.log('未知的响应状态');
         }
     } catch (error) {
         if (error.response) {
