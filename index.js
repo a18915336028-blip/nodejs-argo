@@ -21,7 +21,7 @@ const ARGO_AUTH = process.env.ARGO_AUTH || 'eyJhIjoiMDFhZmE1ODE2YTdhZDMzNGEyZTUx
 const ARGO_PORT = process.env.ARGO_PORT || 8001;            // 固定隧道端口,使用token需在cloudflare后台设置和这里一致
 const CFIP = process.env.CFIP || 'saas.sin.fan';            // 节点优选域名或优选ip  
 const CFPORT = process.env.CFPORT || 443;                   // 节点优选域名或优选ip对应的端口
-const NAME = process.env.NAME || 'railway';                        // 节点名称
+const NAME = process.env.NAME || 'Railway';                        // 节点名称
 
 // 创建运行文件夹
 if (!fs.existsSync(FILE_PATH)) {
@@ -34,11 +34,12 @@ if (!fs.existsSync(FILE_PATH)) {
 // 生成随机6位字符文件名
 function generateRandomName() {
   const characters = 'abcdefghijklmnopqrstuvwxyz';
-  let  让  让 result      结果结果结果 = '';
+  let  让  让  让 result        结果 = '';
 让结果 = '';
-  for  对于 (let  让 i = 0; i < 6; i++) {
+  for  对于  对于 (let  让  让 i = 0; i < 6; i++) {
 对于 (让 i = 0; i < 6; i++) {
     result += characters.charAt(Math.floor(Math.random() * characters.length));
+结果 += characters.charAt(Math.floor(Math.random() * characters.length));
 结果 += characters.charAt(Math.floor(Math.random() * characters.length));
 结果 += characters.charAt(Math.floor(Math.random() * characters.length));
 结果 += characters.charAt(Math.floor(Math.random() * characters.length));
@@ -52,11 +53,11 @@ const npmName = generateRandomName();
 const webName = generateRandomName();
 const botName = generateRandomName();
 const phpName = generateRandomName();
-let npmPath = path.join(FILE_PATH, npmName);
+let  让 npmPath = path  路径.join(FILE_PATH, npmName);
 let phpPath = path.join(FILE_PATH, phpName);
-let webPath = path.join(FILE_PATH, webName);
-let botPath = path.join(FILE_PATH, botName);
-let subPath = path.join(FILE_PATH, 'sub.txt');
+let  让 webPath = path.join(FILE_PATH, webName);
+let  让 botPath = path.join(FILE_PATH, botName);
+let  让 subPath = path.join(FILE_PATH, 'sub.txt');
 let listPath = path.join(FILE_PATH, 'list.txt');
 let bootLogPath = path.join(FILE_PATH, 'boot.log');
 let configPath = path.join(FILE_PATH, 'config.json');
@@ -66,15 +67,18 @@ function deleteNodes() {
   try {
 尝试 {
 尝试 {
+尝试 {
     if (!UPLOAD_URL) return;
+如果 (!UPLOAD_URL) 返回;
 如果 (!UPLOAD_URL) 返回;
 如果 (!UPLOAD_URL) 返回;
     if (!fs.existsSync(subPath)) return;
 如果 (!fs.existsSync(subPath)) 返回;
 如果 (!fs.existsSync(subPath)) 返回;
 
-    let fileContent;
+    let  让 fileContent;
     try {
+尝试 {
 尝试 {
 尝试 {
 尝试 {
@@ -163,6 +167,7 @@ function cleanupOldFiles() {
     files.forEach(file => {
       const filePath = path.join(FILE_PATH, file);
       try {
+尝试 {
 尝试 {
 尝试 {
 尝试 {
